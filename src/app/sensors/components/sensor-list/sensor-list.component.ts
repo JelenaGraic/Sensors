@@ -10,6 +10,13 @@ import { SensorService } from '../../services/sensor.service';
 export class SensorListComponent implements OnInit {
 
   sensors: Sensor[];
+  date = new Date();
+  hours = this.date.getHours() + ":" + this.date.getMinutes();
+  showProgressBar: boolean = true;
+
+  params = {
+    all: ''
+  }
 
   constructor(private service: SensorService) { }
 
@@ -19,7 +26,11 @@ export class SensorListComponent implements OnInit {
   }
 
   refresh () {
-    this.service.getAll().subscribe( data => this.sensors = data.sensors)
+    this.service.getAll(this.params).subscribe( 
+      data => {
+        this.sensors = data.sensors;
+        this.showProgressBar = false;
+      })
   }
 
 }

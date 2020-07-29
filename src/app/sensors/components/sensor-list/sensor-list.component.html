@@ -1,3 +1,18 @@
+<div class="search">
+
+    <mat-form-field>
+
+        <mat-label>Search: </mat-label>
+        <input matInput class="search__all-and-btn" type="text" placeholder="Search" [(ngModel)] = "this.params.all">
+        
+    </mat-form-field>
+
+    <button mat-button (click)="refresh()">Submit</button>
+
+</div>
+
+<mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+
 <div class="container" fxLayout ="row wrap" fxLayout.xs="column" ffxLayoutAlign="flex-start" fxLayoutGap="20px">
 
     <mat-card class="card" *ngFor='let sensor of sensors' fxFlex="0 1 calc(33.3% - 20px)" fxFlex.lt-md="0 1 calc(50% - 20px)"
@@ -7,7 +22,7 @@
             <div class="top__info">
                <h3>{{sensor.name}}</h3>
                 <p>{{sensor.path}}</p>
-                <!-- <p>@{{hours}}</p>  -->
+                <p>@{{hours}}</p> 
             </div>
             <div>
                 <button mat-button class="top__delete-btn">Delete</button>
