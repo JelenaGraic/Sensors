@@ -1,0 +1,26 @@
+<div class="container" fxLayout ="row wrap" fxLayout.xs="column" ffxLayoutAlign="flex-start" fxLayoutGap="20px">
+
+    <mat-card class="card" *ngFor='let sensor of sensors' fxFlex="0 1 calc(33.3% - 20px)" fxFlex.lt-md="0 1 calc(50% - 20px)"
+    fxFlex.xs="100%">
+        
+        <div class="card__top">
+            <div class="top__info">
+               <h3>{{sensor.name}}</h3>
+                <p>{{sensor.path}}</p>
+                <!-- <p>@{{hours}}</p>  -->
+            </div>
+            <div>
+                <button mat-button class="top__delete-btn">Delete</button>
+            </div>              
+        </div>
+
+        <div class="card__bottom">
+
+            <img class="bottom__image" src="../../assets/{{sensor.image}}" alt="not found"> 
+            <div class="bottom__value"><span>{{sensor.value}}</span><br>{{sensor.unitSymbol}}</div>
+
+        </div>
+
+    </mat-card>
+
+</div>

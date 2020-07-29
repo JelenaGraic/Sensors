@@ -1,0 +1,44 @@
+@import '../../../../assets/scss/variables.scss';
+@import '../../../../assets/scss/mixins.scss';
+
+.search, .container {
+    margin-left: 20px;
+}
+
+.card {
+    margin-bottom: 10px;
+    @include desktop {
+        height: 250px;
+    }
+}
+
+.card__top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.top__info:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.card__bottom {
+    color: $green;
+    display: flex;
+    @include desktop {
+        margin-top: 80px;
+    }
+}
+
+
+.bottom__image {
+    filter: invert(69%) sepia(72%) saturate(654%) hue-rotate(149deg) brightness(99%) contrast(86%);
+    height: 50px;
+}
+
+.bottom__value {
+    margin-left: auto;
+    span {
+        font-size: 30px;
+    }
+}
