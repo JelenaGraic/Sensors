@@ -69,6 +69,26 @@
       "value": true,
       "lastUpdate": 1507211004000,
       "type": "ALARM"
+    },
+    {
+      "name": "cbvbc",
+      "image": "",
+      "path": "cvb",
+      "unit_symbol": "cvbcb",
+      "value": "cvbc",
+      "last_update": "dfgdf",
+      "type": "actuator",
+      "id": 8
+    },
+    {
+      "name": "dsfsf",
+      "image": "",
+      "path": "sdf",
+      "unit_symbol": "fsdf",
+      "value": "sdfs",
+      "last_update": "fdsf",
+      "type": "actuator",
+      "id": 9
     }
   ]
 }

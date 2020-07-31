@@ -42,3 +42,12 @@
         font-size: 30px;
     }
 }
+
+.add__btn {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+    button {
+        background-color: $green;
+    }
+}

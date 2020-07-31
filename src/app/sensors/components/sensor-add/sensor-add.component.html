@@ -1,0 +1,59 @@
+<div class="form" *ngIf = 'sensorForm' [formGroup] = "sensorForm">
+
+    <!-- <mat-form-field appearance="fill">
+      <mat-label>Id</mat-label>
+      <input matInput type="number" formControlName="id">
+      <mat-error *ngIf="sensorForm.touched && sensorForm.get('id').value.length == 0">Id is required</mat-error>
+    </mat-form-field>
+    <br> -->
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name">  
+      <mat-error *ngIf="sensorForm.touched && sensorForm.get('name').value.length == 0">Name is required</mat-error>
+      <mat-error *ngIf="sensorForm.touched && sensorForm.get('name').value.length < 4 && !sensorForm.get('name').value.length == 0">Name must contains at least 4 characters</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Image</mat-label>
+      <input matInput formControlName="image">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Path</mat-label>
+      <input matInput formControlName="path">
+      <mat-error *ngIf="sensorForm.touched && sensorForm.get('path').value.length == 0">Path is required</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Unit Symbol</mat-label>
+      <input matInput formControlName="unit_symbol">
+      <mat-error *ngIf="sensorForm.touched && sensorForm.get('unit_symbol').value.length == 0">Unit Symbol is required</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Value</mat-label>
+      <input matInput formControlName="value">
+      <mat-error *ngIf="sensorForm.touched && sensorForm.get('value').value.length == 0">Value is required</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Last Update</mat-label>
+      <input matInput formControlName="last_update">
+      <mat-error *ngIf="sensorForm.touched && sensorForm.get('last_update').value.length == 0">Last upadate is required</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Type</mat-label>
+      <mat-select matNativeControl formControlName="type">
+        <mat-option value="feed">Feed</mat-option>
+        <mat-option value="actuator">Actuator</mat-option>
+        <mat-option value="alarm">Alarm</mat-option>
+      </mat-select>
+      <mat-error *ngIf="sensorForm.touched && sensorForm.get('type').value.length == 0">Type is required</mat-error>
+    </mat-form-field>
+    <br>
+
+
+    <button class="submit-btn" mat-button (click)="onSubmit()" [disabled] ="!enableSubmitBtn()">Submit</button>
+    
+</div>

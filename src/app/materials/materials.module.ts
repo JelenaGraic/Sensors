@@ -5,6 +5,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatIconModule } from '@angular/material/icon';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 const MATERIALS = [
   MatCardModule,
@@ -12,7 +14,9 @@ const MATERIALS = [
   MatInputModule,
   MatFormFieldModule,
   MatSelectModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatIconModule,
+  MatSnackBarModule
 ]
 
 

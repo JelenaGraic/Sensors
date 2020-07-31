@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SensorList } from '../models/sensor-list';
 import { map } from 'rxjs/operators';
+import { Sensor } from '../models/sensor';
 
 const URL = 'http://localhost:3000/sensors';
 
@@ -22,5 +23,9 @@ export class SensorService {
       } 
     }
     return this.http.get(URL, queryParams).pipe(map( data => new SensorList(data) ))
+  }
+
+  addSensor (newSensor: Sensor): Observable<Sensor> {
+    return this.http.post<Sensor>(URL,newSensor);
   }
 }

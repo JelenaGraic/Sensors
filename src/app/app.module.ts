@@ -10,11 +10,13 @@ import { MaterialsModule } from './materials/materials.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SensorAddComponent } from './sensors/components/sensor-add/sensor-add.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SensorListComponent
+    SensorListComponent,
+    SensorAddComponent
   ],
   imports: [
     BrowserModule,

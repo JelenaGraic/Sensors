@@ -38,4 +38,15 @@
 
     </mat-card>
 
+    <mat-card class="card-add" fxFlex="0 1 calc(33.3% - 20px)" fxFlex.lt-md="0 1 calc(50% - 20px)"
+    fxFlex.lt-sm="100%">
+
+        <div class="add__btn">
+            <button mat-mini-fab [routerLink]="['/sensor/add']">
+                <mat-icon>plus_one</mat-icon>
+            </button>
+        </div>
+
+    </mat-card>
+
 </div>
