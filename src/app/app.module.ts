@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,13 +11,13 @@ import { MaterialsModule } from './materials/materials.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SensorAddComponent } from './sensors/components/sensor-add/sensor-add.component';
+import { SensorModule } from './sensors/sensor/sensor.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    SensorListComponent,
-    SensorAddComponent
+    SensorListComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +27,9 @@ import { SensorAddComponent } from './sensors/components/sensor-add/sensor-add.c
     HttpClientModule,
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SensorModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

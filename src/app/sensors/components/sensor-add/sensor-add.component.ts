@@ -19,7 +19,6 @@ export class SensorAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.sensorForm = this.fb.group ({
-      // 'id': ['', Validators.required],
       'name': ["", [Validators.required, Validators.minLength(4)]],
       'image': [""],
       'path': ["", Validators.required],

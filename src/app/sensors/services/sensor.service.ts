@@ -28,4 +28,12 @@ export class SensorService {
   addSensor (newSensor: Sensor): Observable<Sensor> {
     return this.http.post<Sensor>(URL,newSensor);
   }
+
+  updateSensor (updatedSensor: Sensor): Observable<Sensor> {
+    return this.http.put<Sensor>(URL + "/" + updatedSensor.id, updatedSensor);
+  }
+
+  getOneSensor (id: number): Observable<Sensor> {
+    return this.http.get<Sensor>(URL + '/' + id);
+  }
 }

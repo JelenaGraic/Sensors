@@ -19,7 +19,7 @@
     fxFlex.xs="100%">
         
         <div class="card__top">
-            <div class="top__info">
+            <div class="top__info" [routerLink]="['/sensor/edit', sensor.id]">
                <h3>{{sensor.name}}</h3>
                 <p>{{sensor.path}}</p>
                 <p>@{{hours}}</p> 

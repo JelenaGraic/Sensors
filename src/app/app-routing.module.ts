@@ -6,7 +6,8 @@ import { SensorListComponent } from './sensors/components/sensor-list/sensor-lis
 
 const appRoutes: Routes = [
   { path: '', component: SensorListComponent},
-  { path: 'sensor', loadChildren: () => import('../app/sensors/sensor/sensor.module').then(s => s.SensorModule) },
+  { path: 'sensor', 
+  loadChildren: () => import('../app/sensors/sensor/sensor.module').then(s => s.SensorModule) },
 ];
 
 @NgModule({

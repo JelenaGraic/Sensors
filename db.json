@@ -71,24 +71,34 @@
       "type": "ALARM"
     },
     {
-      "name": "cbvbc",
+      "id": 8,
+      "name": "5;ooo",
       "image": "",
       "path": "cvb",
-      "unit_symbol": "cvbcb",
+      "unitSymbol": "",
       "value": "cvbc",
-      "last_update": "dfgdf",
-      "type": "actuator",
-      "id": 8
+      "lastUpdate": null,
+      "type": "actuator"
     },
     {
-      "name": "dsfsf",
+      "id": 9,
+      "name": "dsf;pioi",
       "image": "",
-      "path": "sdf",
-      "unit_symbol": "fsdf",
+      "path": "jkjl",
+      "unitSymbol": "",
       "value": "sdfs",
-      "last_update": "fdsf",
-      "type": "actuator",
-      "id": 9
+      "lastUpdate": null,
+      "type": "actuator"
+    },
+    {
+      "id": 10,
+      "name": "kkkkkkkkkk",
+      "image": "df",
+      "path": "dfgdf",
+      "unitSymbol": "",
+      "value": "dfg",
+      "lastUpdate": null,
+      "type": "actuator"
     }
   ]
 }
