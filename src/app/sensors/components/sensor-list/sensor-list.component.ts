@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Sensor } from '../../models/sensor';
 import { SensorService } from '../../services/sensor.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteAlertComponent } from '../delete-alert/delete-alert.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'ss-sensor-list',
@@ -18,7 +21,7 @@ export class SensorListComponent implements OnInit {
     all: ''
   }
 
-  constructor(private service: SensorService) { }
+  constructor(private service: SensorService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
 
@@ -32,5 +35,25 @@ export class SensorListComponent implements OnInit {
         this.showProgressBar = false;
       })
   }
+
+  onDelete( id: number ) {
+  let dialogRef = this.dialog.open(DeleteAlertComponent);
+
+  dialogRef.afterClosed().subscribe(
+    data=> {
+      if (data == "true") {
+        this.service.deleteSensor(id).subscribe(
+          data => {
+            this.snackBar.open("Data succesuccessfully deleted!", "", {duration: 2000});
+            this.refresh();
+          }
+        );
+      } else {
+        this.snackBar.open("Data is not deleted!", "", {duration: 2000});      
+      }
+    })
+  }
+
+
 
 }

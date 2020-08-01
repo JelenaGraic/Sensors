@@ -79,26 +79,6 @@
       "value": "cvbc",
       "lastUpdate": null,
       "type": "actuator"
-    },
-    {
-      "id": 9,
-      "name": "dsf;pioi",
-      "image": "",
-      "path": "jkjl",
-      "unitSymbol": "",
-      "value": "sdfs",
-      "lastUpdate": null,
-      "type": "actuator"
-    },
-    {
-      "id": 10,
-      "name": "kkkkkkkkkk",
-      "image": "df",
-      "path": "dfgdf",
-      "unitSymbol": "",
-      "value": "dfg",
-      "lastUpdate": null,
-      "type": "actuator"
     }
   ]
 }

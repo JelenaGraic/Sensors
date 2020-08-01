@@ -36,4 +36,9 @@ export class SensorService {
   getOneSensor (id: number): Observable<Sensor> {
     return this.http.get<Sensor>(URL + '/' + id);
   }
+
+  deleteSensor (id: number): Observable<Sensor> {
+    return this.http.delete<Sensor>(URL + "/" + id);
+  }
+
 }

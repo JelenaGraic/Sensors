@@ -6,6 +6,7 @@ import { MaterialsModule } from '../../materials/materials.module';
 import { CommonModule } from '@angular/common';
 import { SensorService } from '../services/sensor.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DeleteAlertComponent } from '../components/delete-alert/delete-alert.component';
 
 const routes: Routes = [
   { path: 'add', component: SensorAddComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
 @NgModule({
   declarations:[
     SensorAddComponent,
-    SensorEditComponent
+    SensorEditComponent,
+    DeleteAlertComponent
   ],
   imports: [
     MaterialsModule,
@@ -27,7 +29,8 @@ const routes: Routes = [
   exports: [
     RouterModule,
     SensorAddComponent,
-    SensorEditComponent
+    SensorEditComponent,
+    DeleteAlertComponent
   ],
   providers: [SensorService]
 })
