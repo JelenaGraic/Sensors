@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
 import { SensorService } from '../../services/sensor.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { switchMap, map, catchError, mergeMap, tap } from 'rxjs/operators';
+import { switchMap, map, catchError, mergeMap, tap, concatMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import * as fromActions from '../actions/sensors.action';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 
 @Injectable()
 
 export class SensorsEffects {
 
-    constructor( private service: SensorService, 
-                 private actions$: Actions, 
-                 private snackBar: MatSnackBar) {}
 
-    loadSensors$ = createEffect(() =>
+
+  loadSensors$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromActions.loadSensors),
       switchMap(() =>
@@ -29,18 +28,43 @@ export class SensorsEffects {
     )
   );
 
-  deleteSensors$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(fromActions.deleteSensor),
-    mergeMap((action) =>
-      this.service.deleteSensor(action.id).pipe(
-        map(sensor => fromActions.deleteSensorSuccess({ id: sensor.id })),
-        catchError(error =>
-          of(fromActions.loadSensorsFailure(error))
+  deleteSensor$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(fromActions.deleteSensor),
+      mergeMap((action) =>
+        this.service.deleteSensor(action.id).pipe(
+          map(sensor => fromActions.deleteSensorSuccess({ id: sensor.id })),
+          tap(() => this.snackBar.open("Data succesuccessfully deleted!", "", {duration: 2000})),
+          catchError(error =>
+            of(fromActions.deleteSensorFailure(error))
+          )
         )
-      )
-    ),
-    tap(() => this.snackBar.open("Data succesuccessfully deleted!", "", {duration: 2000}))
-  )
-);
+      ),
+      
+    )
+  );
+
+
+  addSensor$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(fromActions.addSensor),
+      concatMap((action) =>
+        this.service.addSensor(action.sensor).pipe(
+          map(sensor => fromActions.addSensorSuccess({ sensor: sensor })),
+          tap(() => this.snackBar.open("Data succesuccessfully deleted!", "", {duration: 2000})),
+          tap(() => this.router.navigate([''])),
+          catchError(error =>
+            of(fromActions.addSensorFailure(error))
+          )
+        )
+      )   
+    )
+  );
+
+
+
+  constructor( private service: SensorService, 
+               private actions$: Actions, 
+               private snackBar: MatSnackBar,
+               private router: Router) {}
 }

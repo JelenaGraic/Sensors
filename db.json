@@ -69,6 +69,16 @@
       "value": true,
       "lastUpdate": 1507211004000,
       "type": "ALARM"
+    },
+    {
+      "name": "xzczxc",
+      "image": "zxc",
+      "path": "xzc",
+      "unit_symbol": "zxc",
+      "value": "zxc",
+      "last_update": "zzc",
+      "type": "feed",
+      "id": 9
     }
   ]
 }
