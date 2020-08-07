@@ -20,6 +20,8 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { EffectsModule } from '@ngrx/effects'
+import { reducer, CustomSerializer } from './router store/reducers/index';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 
 @NgModule({
@@ -38,9 +40,10 @@ import { EffectsModule } from '@ngrx/effects'
     ReactiveFormsModule,
     SensorModule,
     CommonModule,
-    StoreModule.forRoot({},{}),
+    StoreModule.forRoot(reducer,{}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
+    StoreRouterConnectingModule.forRoot({ serializer: CustomSerializer})
   ],
   providers: [],
   bootstrap: [AppComponent]
