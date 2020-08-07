@@ -36,8 +36,10 @@ export class SensorAddComponent implements OnInit {
         this.sensorForm.reset();
         this.snackBar.open("Data succesuccessfully added!", "", {duration: 2000});
         this.router.navigate([''])
-      }
-    )
+      }),
+    error => {
+      console.error(error);  
+    } 
   }
 
   enableSubmitBtn () {

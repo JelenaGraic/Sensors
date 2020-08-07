@@ -33,7 +33,10 @@ export class SensorListComponent implements OnInit {
       data => {
         this.sensors = data.sensors;
         this.showProgressBar = false;
-      })
+      }),
+      error => {
+        console.error(error);
+      }
   }
 
   onDelete( id: number ) {
@@ -51,7 +54,10 @@ export class SensorListComponent implements OnInit {
       } else {
         this.snackBar.open("Data is not deleted!", "", {duration: 2000});      
       }
-    })
+    }),
+    error => {
+      console.error(error);
+    }
   }
 
 

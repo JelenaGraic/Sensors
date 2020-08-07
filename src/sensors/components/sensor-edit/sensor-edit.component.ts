@@ -27,8 +27,10 @@ export class SensorEditComponent implements OnInit {
       data => {
         this.updateSensor = data;
         this.sensorForm.patchValue(this.updateSensor);
-      }
-    )
+      }),
+    error => {
+      console.error(error);
+    }
     
   }
 
@@ -53,8 +55,10 @@ export class SensorEditComponent implements OnInit {
         this.sensorForm.reset();
         this.snackBar.open("Data succesuccessfully updated!", "", {duration: 2000});
         this.router.navigate(['']); 
-      }
-    )
+      }),
+    error => {
+      console.error(error);  
+    } 
   }
 
   enableSubmitBtn () {

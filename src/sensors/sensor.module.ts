@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { SensorAddComponent } from '../components/sensor-add/sensor-add.component';
-import { SensorEditComponent } from '../components/sensor-edit/sensor-edit.component';
-import { MaterialsModule } from '../../materials/materials.module';
 import { CommonModule } from '@angular/common';
-import { SensorService } from '../services/sensor.service';
+import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DeleteAlertComponent } from '../components/delete-alert/delete-alert.component';
+
+//components and services
+import { SensorAddComponent } from './components/sensor-add/sensor-add.component';
+import { SensorEditComponent } from './components/sensor-edit/sensor-edit.component';
+import { DeleteAlertComponent } from './components/delete-alert/delete-alert.component';
+import { SensorService } from './services/sensor.service';
+
+//materials module
+import { MaterialsModule } from '../materials/materials.module';
 
 const routes: Routes = [
   { path: 'add', component: SensorAddComponent },
@@ -20,10 +24,10 @@ const routes: Routes = [
     DeleteAlertComponent
   ],
   imports: [
-    MaterialsModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MaterialsModule,
     RouterModule.forChild(routes)
   ],
   exports: [
