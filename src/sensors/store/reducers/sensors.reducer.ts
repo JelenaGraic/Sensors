@@ -22,27 +22,40 @@ export const initialState: SensorState = adapter.getInitialState ({
 export const sensorReducer = createReducer (
     initialState,
     on(fromSensorsActions.loadSensors,
-        (state, action) => {
-          return {
-            ...state,
-            loading: true,
-            loaded: false
-          }
-        }),
-      on(fromSensorsActions.loadSensorsSuccess,
-          (state, action) => {
-            state = {...state, loading: false, loaded: true}
-            return adapter.setAll(action.sensors, state)
-          }
-        ),
-        on(fromSensorsActions.loadSensorsFailure,
-          (state, action) => {
-            return {
-              ...state,
-              error: action.error
-            }
-          }
-        ),
+      (state, action) => {
+        return {
+          ...state,
+          loading: true,
+          loaded: false
+        }
+      }
+    ),
+    on(fromSensorsActions.loadSensorsSuccess,
+      (state, action) => {
+        state = {...state, loading: false, loaded: true}
+        return adapter.setAll(action.sensors, state)
+      }
+    ),
+    on(fromSensorsActions.loadSensorsFailure,
+      (state, action) => {
+        return {
+           ...state,
+          error: action.error
+        }
+      }
+    ),
+    on(fromSensorsActions.deleteSensorSuccess,
+      (state, action) => adapter.removeOne(action.id, state)
+    ),
+    on(fromSensorsActions.deleteSensorFailure,
+      (state, action) => {
+        return {
+          ...state,
+          error: action.error
+        }
+      }
+    ),
+
 )
 
 export function reducer (state: SensorState | undefined, action: Action) {
@@ -50,7 +63,6 @@ export function reducer (state: SensorState | undefined, action: Action) {
   }
 
 
-//export const getSensors = (state: SensorState) => state.entities;
 export const getSensorsLoading = (state: SensorState) => state.loading;
 export const getSensorsLoaded = (state: SensorState) => state.loaded;
 

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Sensor } from '../../models/sensor';
-import { SensorService } from '../../services/sensor.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteAlertComponent } from '../delete-alert/delete-alert.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -26,40 +25,35 @@ export class SensorListComponent implements OnInit {
     all: ''
   }
 
-  constructor(private service: SensorService, private dialog: MatDialog, private snackBar: MatSnackBar,
+  constructor(private dialog: MatDialog, private snackBar: MatSnackBar,
               private store: Store<MainState>) { }
 
   ngOnInit(): void {
-    this.store.dispatch(fromActions.loadSensors());
-    this.refresh();
+      this.refresh();
   }
 
   refresh () {
+
+      this.store.dispatch(fromActions.loadSensors());
       this.sensors$ = this.store.select(fromSensorsSelectors.getSensors);
       this.showProgressBar$ = this.store.select(fromSensorsSelectors.getLoading);
+
   }
 
   onDelete( id: number ) {
-  let dialogRef = this.dialog.open(DeleteAlertComponent);
 
-  dialogRef.afterClosed().subscribe(
-    data=> {
-      if (data == "true") {
-        this.service.deleteSensor(id).subscribe(
-          data => {
-            this.snackBar.open("Data succesuccessfully deleted!", "", {duration: 2000});
+      let dialogRef = this.dialog.open(DeleteAlertComponent);
+
+      dialogRef.afterClosed().subscribe(
+        data=> {
+          if (data == "true") {
+            this.store.dispatch(fromActions.deleteSensor({ id }));
             this.refresh();
+          } else {
+            this.snackBar.open("Data is not deleted!", "", {duration: 2000});      
           }
-        );
-      } else {
-        this.snackBar.open("Data is not deleted!", "", {duration: 2000});      
-      }
-    }),
-    error => {
-      console.error(error);
-    }
+        }
+      )
   }
-
-
 
 }

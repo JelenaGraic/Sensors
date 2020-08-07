@@ -7,21 +7,9 @@ export const getSensorState = createSelector (
     (state: fromMain.MainState) => state.sensors
 )
 
-// export const getSensorsEntities = createSelector (
-//     getSensorState,
-//     fromSensors.getSensors
-// )
-
 export const getSensors = createSelector (
     getSensorState,
     fromSensors.selectAll
-    // getSensorsEntities,
-    // getSensorsEntities,
-    // (entities) => {
-    //     return Object.keys(entities).map(
-    //         id => entities[parseInt(id,10)]
-    //     )
-    // }
 )
 
 export const getLoading = createSelector (

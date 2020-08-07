@@ -69,16 +69,6 @@
       "value": true,
       "lastUpdate": 1507211004000,
       "type": "ALARM"
-    },
-    {
-      "id": 8,
-      "name": "5;ooo",
-      "image": "",
-      "path": "cvb",
-      "unitSymbol": "",
-      "value": "cvbc",
-      "lastUpdate": null,
-      "type": "actuator"
     }
   ]
 }
