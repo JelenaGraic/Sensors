@@ -6,6 +6,8 @@ import { DeleteAlertComponent } from '../delete-alert/delete-alert.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MainState } from 'src/sensors/store/reducers';
 import { Store } from '@ngrx/store';
+import * as fromSensorsSelectors from '../../store/selectors/sensors.selectors';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ss-sensor-list',
@@ -14,7 +16,7 @@ import { Store } from '@ngrx/store';
 })
 export class SensorListComponent implements OnInit {
 
-  sensors: Sensor[];
+  sensors$: Observable<Sensor[]>;
   date = new Date();
   hours = this.date.getHours() + ":" + this.date.getMinutes();
   showProgressBar: boolean = true;
@@ -27,6 +29,7 @@ export class SensorListComponent implements OnInit {
               private store: Store<MainState>) { }
 
   ngOnInit(): void {
+    this.sensors$ = this.store.select(fromSensorsSelectors.getSensors);
     this.refresh();
   }
 

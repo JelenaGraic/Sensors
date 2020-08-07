@@ -45,3 +45,8 @@ export const sensorReducer = createReducer (
           }
         ),
 )
+
+
+export const getSensors = (state: SensorState) => state.sensors;
+export const getSensorsLoading = (state: SensorState) => state.loading;
+export const getSensorsLoaded = (state: SensorState) => state.loaded;

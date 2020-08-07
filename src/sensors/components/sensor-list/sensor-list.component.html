@@ -15,7 +15,7 @@
 
 <div class="container" fxLayout ="row wrap" fxLayout.xs="column" ffxLayoutAlign="flex-start" fxLayoutGap="20px">
 
-    <mat-card class="card" *ngFor='let sensor of sensors' fxFlex="0 1 calc(33.3% - 20px)" fxFlex.lt-md="0 1 calc(50% - 20px)"
+    <mat-card class="card" *ngFor='let sensor of sensors$ | async' fxFlex="0 1 calc(33.3% - 20px)" fxFlex.lt-md="0 1 calc(50% - 20px)"
     fxFlex.xs="100%">
         
         <div class="card__top">
