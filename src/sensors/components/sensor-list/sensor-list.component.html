@@ -11,7 +11,7 @@
 
 </div>
 
-<mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
+<mat-progress-bar mode="indeterminate" *ngIf="showProgressBar$ | async"></mat-progress-bar>
 
 <div class="container" fxLayout ="row wrap" fxLayout.xs="column" ffxLayoutAlign="flex-start" fxLayoutGap="20px">
 

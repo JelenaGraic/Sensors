@@ -19,6 +19,7 @@ import { SensorModule } from '../sensors/sensor.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
+import { EffectsModule } from '@ngrx/effects'
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { environment } from 'src/environments/environment';
     SensorModule,
     CommonModule,
     StoreModule.forRoot({},{}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 import { Sensor } from "../../models/sensor";
-import { createReducer, on } from "@ngrx/store";
+import { createReducer, on, Action } from "@ngrx/store";
 import * as fromSensorsActions from '../actions/sensors.action';
 
 
@@ -45,6 +45,10 @@ export const sensorReducer = createReducer (
           }
         ),
 )
+
+export function reducer (state: SensorState | undefined, action: Action) {
+    return sensorReducer(state, action);
+  }
 
 
 export const getSensors = (state: SensorState) => state.sensors;

@@ -8,6 +8,7 @@ import { MainState } from 'src/sensors/store/reducers';
 import { Store } from '@ngrx/store';
 import * as fromSensorsSelectors from '../../store/selectors/sensors.selectors';
 import { Observable } from 'rxjs';
+import * as fromActions from '../../store/actions/sensors.action';
 
 @Component({
   selector: 'ss-sensor-list',
@@ -19,7 +20,7 @@ export class SensorListComponent implements OnInit {
   sensors$: Observable<Sensor[]>;
   date = new Date();
   hours = this.date.getHours() + ":" + this.date.getMinutes();
-  showProgressBar: boolean = true;
+  showProgressBar$: Observable<boolean>;
 
   params = {
     all: ''
@@ -29,19 +30,13 @@ export class SensorListComponent implements OnInit {
               private store: Store<MainState>) { }
 
   ngOnInit(): void {
-    this.sensors$ = this.store.select(fromSensorsSelectors.getSensors);
+    this.store.dispatch(fromActions.loadSensors());
     this.refresh();
   }
 
   refresh () {
-    this.service.getAll(this.params).subscribe( 
-      data => {
-        this.sensors = data.sensors;
-        this.showProgressBar = false;
-      }),
-      error => {
-        console.error(error);
-      }
+      this.sensors$ = this.store.select(fromSensorsSelectors.getSensors);
+      this.showProgressBar$ = this.store.select(fromSensorsSelectors.getLoading);
   }
 
   onDelete( id: number ) {

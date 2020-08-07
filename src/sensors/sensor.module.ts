@@ -15,6 +15,8 @@ import { MaterialsModule } from '../materials/materials.module';
 //store
 import { StoreModule } from '@ngrx/store';
 import * as fromMain from '../sensors/store/reducers/index';
+import { EffectsModule } from '@ngrx/effects';
+import { SensorsEffects } from './store/effects/sensors.effects';
 
 const routes: Routes = [
   { path: 'add', component: SensorAddComponent },
@@ -33,7 +35,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     MaterialsModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature('main', fromMain.reducers)
+    StoreModule.forFeature('main', fromMain.reducers),
+    EffectsModule.forFeature([SensorsEffects])
   ],
   exports: [
     RouterModule,

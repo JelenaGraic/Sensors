@@ -11,3 +11,8 @@ export const getSensors = createSelector (
     getSensorState,
     fromSensors.getSensors
 )
+
+export const getLoading = createSelector (
+    getSensorState,
+    fromSensors.getSensorsLoading
+)
