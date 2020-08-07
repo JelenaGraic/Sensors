@@ -4,6 +4,8 @@ import { SensorService } from '../../services/sensor.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteAlertComponent } from '../delete-alert/delete-alert.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MainState } from 'src/sensors/store/reducers';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'ss-sensor-list',
@@ -21,10 +23,10 @@ export class SensorListComponent implements OnInit {
     all: ''
   }
 
-  constructor(private service: SensorService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(private service: SensorService, private dialog: MatDialog, private snackBar: MatSnackBar,
+              private store: Store<MainState>) { }
 
   ngOnInit(): void {
-
     this.refresh();
   }
 

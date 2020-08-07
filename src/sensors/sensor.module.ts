@@ -12,6 +12,10 @@ import { SensorService } from './services/sensor.service';
 //materials module
 import { MaterialsModule } from '../materials/materials.module';
 
+//store
+import { StoreModule } from '@ngrx/store';
+import * as fromMain from '../sensors/store/reducers/index';
+
 const routes: Routes = [
   { path: 'add', component: SensorAddComponent },
   { path: 'edit/:id', component: SensorEditComponent }
@@ -28,7 +32,8 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MaterialsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    StoreModule.forFeature('main', fromMain.reducers)
   ],
   exports: [
     RouterModule,

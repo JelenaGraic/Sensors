@@ -15,6 +15,11 @@ import { SensorListComponent } from '../sensors/components/sensor-list/sensor-li
 import { MaterialsModule } from '../materials/materials.module';
 import { SensorModule } from '../sensors/sensor.module';
 
+//store
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +36,9 @@ import { SensorModule } from '../sensors/sensor.module';
     FormsModule,
     ReactiveFormsModule,
     SensorModule,
-    CommonModule
+    CommonModule,
+    StoreModule.forRoot({},{}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
