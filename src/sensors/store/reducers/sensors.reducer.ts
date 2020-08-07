@@ -55,7 +55,17 @@ export const sensorReducer = createReducer (
         }
       }
     ),
-
+    on(fromSensorsActions.addSensorSuccess,
+      (state, action) => adapter.addOne(action.sensor, state)
+    ),
+    on(fromSensorsActions.addSensorFailure,
+      (state, action) => {
+        return {
+          ...state,
+          error: action.error
+        }
+      }
+    ),
 )
 
 export function reducer (state: SensorState | undefined, action: Action) {

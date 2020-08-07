@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { Sensor } from '../../models/sensor';
-import { SensorService } from '../../services/sensor.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MainState } from 'src/sensors/store/reducers';
+import { Store } from '@ngrx/store';
+import * as fromActions from '../../store/actions/sensors.action';
 
 @Component({
   selector: 'ss-sensor-add',
@@ -13,9 +12,8 @@ import { Router } from '@angular/router';
 export class SensorAddComponent implements OnInit {
 
   sensorForm: FormGroup;
-  newSensor: Sensor;
 
-  constructor(private fb: FormBuilder, private service: SensorService, private snackBar: MatSnackBar, private router: Router) { }
+  constructor(private fb: FormBuilder, private store: Store<MainState>) { }
 
   ngOnInit(): void {
     this.sensorForm = this.fb.group ({
@@ -30,16 +28,7 @@ export class SensorAddComponent implements OnInit {
   }
 
   onSubmit() {
-    this.newSensor = this.sensorForm.value;
-    this.service.addSensor(this.newSensor).subscribe(
-      data =>{
-        this.sensorForm.reset();
-        this.snackBar.open("Data succesuccessfully added!", "", {duration: 2000});
-        this.router.navigate([''])
-      }),
-    error => {
-      console.error(error);  
-    } 
+    this.store.dispatch(fromActions.addSensor({sensor: this.sensorForm.value}))
   }
 
   enableSubmitBtn () {

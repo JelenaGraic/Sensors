@@ -52,8 +52,7 @@ export class SensorListComponent implements OnInit {
           } else {
             this.snackBar.open("Data is not deleted!", "", {duration: 2000});      
           }
-        }
-      )
+        })
   }
 
 }

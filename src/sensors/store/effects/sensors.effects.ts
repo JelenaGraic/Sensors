@@ -39,8 +39,7 @@ export class SensorsEffects {
             of(fromActions.deleteSensorFailure(error))
           )
         )
-      ),
-      
+      )     
     )
   );
 
