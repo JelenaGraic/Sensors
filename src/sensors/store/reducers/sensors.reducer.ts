@@ -1,20 +1,23 @@
 import { Sensor } from "../../models/sensor";
 import { createReducer, on, Action } from "@ngrx/store";
 import * as fromSensorsActions from '../actions/sensors.action';
+import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 
 
-export interface SensorState {
-    sensors: Sensor[],
-    loading: boolean
-    loaded: boolean
+export interface SensorState extends EntityState<Sensor> {
+    loading: boolean,
+    loaded: boolean,
+    error: any
 }
 
-export const initialState: SensorState = {
-    sensors: [],
+export const adapter: EntityAdapter<Sensor> = createEntityAdapter<Sensor>();
+
+export const initialState: SensorState = adapter.getInitialState ({
     loading: false,
-    loaded: false
-}
+    loaded: false,
+    error: undefined
+})
 
 export const sensorReducer = createReducer (
     initialState,
@@ -28,12 +31,8 @@ export const sensorReducer = createReducer (
         }),
       on(fromSensorsActions.loadSensorsSuccess,
           (state, action) => {
-            return {
-                ...state,
-                sensors: action.sensors,
-                loading: false,
-                loaded: true
-            }
+            state = {...state, loading: false, loaded: true}
+            return adapter.setAll(action.sensors, state)
           }
         ),
         on(fromSensorsActions.loadSensorsFailure,
@@ -51,6 +50,10 @@ export function reducer (state: SensorState | undefined, action: Action) {
   }
 
 
-export const getSensors = (state: SensorState) => state.sensors;
+//export const getSensors = (state: SensorState) => state.entities;
 export const getSensorsLoading = (state: SensorState) => state.loading;
 export const getSensorsLoaded = (state: SensorState) => state.loaded;
+
+export const {
+    selectAll
+  } = adapter.getSelectors();
