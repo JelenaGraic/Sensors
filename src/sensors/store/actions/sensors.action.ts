@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Sensor } from '../../models/sensor';
-
+import { Update } from '@ngrx/entity';
 
 
 //load sensors
@@ -54,4 +54,13 @@ export const addSensorSuccess = createAction(
 export const addSensorFailure = createAction(
   '[Effects: Add Sensor] Add Sensor Failure',
   props<{ error: any }>()
+);
+
+
+
+//update (edit) sensor
+
+export const updateSensor = createAction(
+  '[Sesor Edit Component] Edit Sensor',
+  props<{ sensor: Update<Sensor> }>()
 );

@@ -47,7 +47,7 @@ export class SensorsEffects {
   addSensor$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromActions.addSensor),
-      concatMap((action) =>
+      mergeMap((action) =>
         this.service.addSensor(action.sensor).pipe(
           map(sensor => fromActions.addSensorSuccess({ sensor: sensor })),
           tap(() => this.snackBar.open("Data succesuccessfully deleted!", "", {duration: 2000})),
@@ -58,6 +58,21 @@ export class SensorsEffects {
         )
       )   
     )
+  );
+
+  editSensor$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(fromActions.updateSensor),
+      concatMap( action =>
+        this.service.updateSensor(
+          action.sensor.id,
+          action.sensor.changes)
+    ),
+    tap(() => {this.router.navigate([''])}
+    ),
+    tap(() => this.snackBar.open("Data succesuccessfully updated!", "", {duration: 2000})),  
+    ),
+    { dispatch: false }
   );
 
 

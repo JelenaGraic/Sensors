@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Sensor } from '../../models/sensor';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { SensorService } from '../../services/sensor.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Update } from '@ngrx/entity';
+import { MainState } from 'src/sensors/store/reducers';
+import { Store } from '@ngrx/store';
+import * as fromActions from '../../store/actions/sensors.action';
 
 @Component({
   selector: 'app-sensor-edit',
@@ -15,8 +18,8 @@ export class SensorEditComponent implements OnInit {
   sensorForm: FormGroup;
   updateSensor: Sensor;
 
-  constructor(private fb: FormBuilder, private service: SensorService, private snackBar: MatSnackBar, private router: Router,
-              private route: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private service: SensorService,
+              private route: ActivatedRoute, private store: Store<MainState>) {
 
     this.createForm();
    }
@@ -48,17 +51,12 @@ export class SensorEditComponent implements OnInit {
 
   onSubmit() {
 
-    let submitedSensor = new Sensor (this.sensorForm.value);
-    submitedSensor.id = this.updateSensor.id;
-    this.service.updateSensor(submitedSensor).subscribe(
-      data => {
-        this.sensorForm.reset();
-        this.snackBar.open("Data succesuccessfully updated!", "", {duration: 2000});
-        this.router.navigate(['']); 
-      }),
-    error => {
-      console.error(error);  
-    } 
+    let update: Update<Sensor> = {
+      id: this.updateSensor.id,
+      changes: this.sensorForm.value
+    }
+    this.store.dispatch(fromActions.updateSensor({sensor: update}));
+
   }
 
   enableSubmitBtn () {

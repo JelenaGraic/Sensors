@@ -66,6 +66,9 @@ export const sensorReducer = createReducer (
         }
       }
     ),
+    on(fromSensorsActions.updateSensor,
+      (state, action) => adapter.updateOne(action.sensor, state)
+    )
 )
 
 export function reducer (state: SensorState | undefined, action: Action) {

@@ -7,7 +7,7 @@ export interface MainState {
 
 export const reducers: ActionReducerMap <MainState> = {
     sensors: fromSensors.sensorReducer                  //if we had more reducers besides sensor in this area, we could add it here, but
-                                                        // in this case we had only one reducer = sensorReducer
+                                                        // in this case I had only one reducer = sensorReducer
 }
 
 export const getMainState = createFeatureSelector <MainState>(
