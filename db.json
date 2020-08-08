@@ -71,14 +71,24 @@
       "type": "ALARM"
     },
     {
-      "name": "qqwqw",
+      "name": "llll",
       "image": "zxc",
       "path": "xzc",
-      "unit_symbol": "zxc",
+      "unitSymbol": "dsfs",
       "value": "zxc",
-      "last_update": "zzc",
+      "lastUpdate": "sdf",
       "type": "alarm",
       "id": 9
+    },
+    {
+      "name": "pppp",
+      "image": "sdfsd",
+      "path": "sdfsd",
+      "unitSymbol": "cvbc",
+      "value": "dsf",
+      "lastUpdate": "cvbc",
+      "type": "feed",
+      "id": 10
     }
   ]
 }

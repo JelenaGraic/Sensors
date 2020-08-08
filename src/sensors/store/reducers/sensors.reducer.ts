@@ -79,6 +79,8 @@ export function reducer (state: SensorState | undefined, action: Action) {
 export const getSensorsLoading = (state: SensorState) => state.loading;
 export const getSensorsLoaded = (state: SensorState) => state.loaded;
 
+
 export const {
-    selectAll
+    selectAll,
+    selectEntities
   } = adapter.getSelectors();

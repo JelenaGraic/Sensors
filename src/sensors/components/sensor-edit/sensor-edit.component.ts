@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Sensor } from '../../models/sensor';
-import { ActivatedRoute } from '@angular/router';
-import { SensorService } from '../../services/sensor.service';
 import { Update } from '@ngrx/entity';
 import { MainState } from 'src/sensors/store/reducers';
 import { Store } from '@ngrx/store';
 import * as fromActions from '../../store/actions/sensors.action';
+import { Observable, Subscription } from 'rxjs';
+import * as fromSelectors from '../../store/selectors/sensors.selectors';
 
 @Component({
   selector: 'app-sensor-edit',
@@ -16,41 +16,37 @@ import * as fromActions from '../../store/actions/sensors.action';
 export class SensorEditComponent implements OnInit {
 
   sensorForm: FormGroup;
+  updateSensor$: Observable<Sensor>;
   updateSensor: Sensor;
 
-  constructor(private fb: FormBuilder, private service: SensorService,
-              private route: ActivatedRoute, private store: Store<MainState>) {
+  constructor(private fb: FormBuilder, private store: Store<MainState>) {
 
     this.createForm();
    }
 
   ngOnInit(): void {
-    let id = this.route.snapshot.params.id;
-    this.service.getOneSensor(id).subscribe(
-      data => {
-        this.updateSensor = data;
-        this.sensorForm.patchValue(this.updateSensor);
-      }),
-    error => {
-      console.error(error);
-    }
-    
+
+    this.updateSensor$ = this.store.select(fromSelectors.getSelectedSensor);
+    this.updateSensor$.subscribe(res =>{
+      this.updateSensor = res;
+      this.sensorForm.patchValue(res);     
+    })
   }
+
 
   createForm() {
     this.sensorForm = this.fb.group ({
       'name': ["", [Validators.required, Validators.minLength(4)]],
       'image': [""],
       'path': ["", Validators.required],
-      'unit_symbol': ["", Validators.required],
+      'unitSymbol': ["", Validators.required],
       'value': ["", Validators.required],
-      'last_update': ["", Validators.required],
+      'lastUpdate': ["", Validators.required],
       'type': ["", Validators.required]
     })
   }
 
   onSubmit() {
-
     let update: Update<Sensor> = {
       id: this.updateSensor.id,
       changes: this.sensorForm.value
@@ -64,3 +60,4 @@ export class SensorEditComponent implements OnInit {
   }
 
 }
+
