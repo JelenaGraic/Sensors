@@ -1,0 +1,35 @@
+@import '../../../assets/scss/variables.scss';
+@import '../../../assets/scss/mixins.scss';
+
+.form {
+    padding: 20px;
+    mat-form-field {
+        width: 100%;
+    }
+    @include mobile {
+        padding: 60px;
+    }
+    @include tablet {
+        padding: 50px 100px;
+    }
+    @include desktop {
+        padding: 50px 300px;
+    }
+}
+
+small {
+    color: rgb(255, 0, 0);
+}
+
+.submit-btn {
+    background-color: $green;
+    width: 100%;
+    @include mobile {
+        width: auto;
+    }
+    @include desktop {
+        &:hover {
+            background-color: #9ec7ce;
+        }
+    }
+}

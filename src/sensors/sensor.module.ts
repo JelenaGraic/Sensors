@@ -18,9 +18,15 @@ import * as fromMain from '../sensors/store/reducers/index';
 import { EffectsModule } from '@ngrx/effects';
 import { SensorsEffects } from './store/effects/sensors.effects';
 
+//guards
+import * as fromGuards from '../sensors/guards/index';
+
 const routes: Routes = [
-  { path: 'add', component: SensorAddComponent },
-  { path: 'edit/:id', component: SensorEditComponent }
+  { path: 'add',
+    component: SensorAddComponent },
+  { path: 'edit/:id', 
+    canActivate: [fromGuards.SensorsGuard],
+    component: SensorEditComponent }
 ]
 
 @NgModule({
@@ -44,7 +50,7 @@ const routes: Routes = [
     SensorEditComponent,
     DeleteAlertComponent
   ],
-  providers: [SensorService]
+  providers: [SensorService, fromGuards.guards]
 })
 export class SensorModule { }
 

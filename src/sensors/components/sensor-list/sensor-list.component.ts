@@ -33,8 +33,6 @@ export class SensorListComponent implements OnInit {
   }
 
   refresh () {
-
-      this.store.dispatch(fromActions.loadSensors());
       this.sensors$ = this.store.select(fromSensorsSelectors.getSensors);
       this.showProgressBar$ = this.store.select(fromSensorsSelectors.getLoading);
 
