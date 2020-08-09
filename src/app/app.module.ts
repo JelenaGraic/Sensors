@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //component
 import { SensorListComponent } from '../sensors/components/sensor-list/sensor-list.component';
+import { SwitchButtonComponent } from 'src/sensors/components/switch-button/switch-button.component';
 
 //modules
 import { MaterialsModule } from '../materials/materials.module';
@@ -24,10 +25,13 @@ import { reducer, CustomSerializer } from './router store/reducers/index';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    SensorListComponent
+    SensorListComponent,
+    SwitchButtonComponent
   ],
   imports: [
     BrowserModule,

@@ -69,26 +69,6 @@
       "value": true,
       "lastUpdate": 1507211004000,
       "type": "ALARM"
-    },
-    {
-      "name": "llll",
-      "image": "zxc",
-      "path": "xzc",
-      "unitSymbol": "dsfs",
-      "value": "zxc",
-      "lastUpdate": "sdf",
-      "type": "alarm",
-      "id": 9
-    },
-    {
-      "name": "pppp",
-      "image": "sdfsd",
-      "path": "sdfsd",
-      "unitSymbol": "cvbc",
-      "value": "dsf",
-      "lastUpdate": "cvbc",
-      "type": "feed",
-      "id": 10
     }
   ]
 }

@@ -1,0 +1,61 @@
+<mat-progress-bar mode="indeterminate" *ngIf="showProgressBar$ | async"></mat-progress-bar>
+<div class="mat-elevation-z8">
+
+    <mat-form-field class="filter">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search">
+    </mat-form-field>
+
+    <button mat-button class="add-btn" [routerLink]="['/sensor/add']">Add</button>
+
+    <mat-table [dataSource]="dataSource" matSortActive="name"  matSort>
+
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+        </ng-container>
+    
+
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        </ng-container>
+    
+
+        <ng-container matColumnDef="unitSymbol">
+          <mat-header-cell *matHeaderCellDef> Unit Symbol </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.unitSymbol}} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="value">
+          <mat-header-cell *matHeaderCellDef> Value </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.value}} </mat-cell>
+        </ng-container>
+    
+
+        <ng-container matColumnDef="type">
+          <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="edit">
+          <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+          <mat-cell *matCellDef="let element"><button mat-icon-button [routerLink]="['/sensor/edit/', element.id]"><mat-icon>create</mat-icon></button></mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="delete">
+          <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+          <mat-cell *matCellDef="let element"><button mat-icon-button (click)="onDelete(element.id)"><mat-icon>delete</mat-icon></button></mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+
+      <mat-paginator [length]="20"
+                  [pageSize]="5"
+                  [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
+</div>
+

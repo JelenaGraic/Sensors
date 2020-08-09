@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SensorAddComponent } from './components/sensor-add/sensor-add.component';
 import { SensorEditComponent } from './components/sensor-edit/sensor-edit.component';
 import { DeleteAlertComponent } from './components/delete-alert/delete-alert.component';
+import { TableComponent } from './components/table/table.component';
 import { SensorService } from './services/sensor.service';
 
 //materials module
@@ -26,14 +27,17 @@ const routes: Routes = [
     component: SensorAddComponent },
   { path: 'edit/:id', 
     canActivate: [fromGuards.SensorsGuard],
-    component: SensorEditComponent }
+    component: SensorEditComponent },
+  { path: 'grid',
+    component: TableComponent}
 ]
 
 @NgModule({
   declarations:[
     SensorAddComponent,
     SensorEditComponent,
-    DeleteAlertComponent
+    DeleteAlertComponent,
+    TableComponent
   ],
   imports: [
     CommonModule,

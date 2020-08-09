@@ -64,3 +64,4 @@ export const updateSensor = createAction(
   '[Sesor Edit Component] Edit Sensor',
   props<{ sensor: Update<Sensor> }>()
 );
+

@@ -9,7 +9,7 @@ import { Observable, Subscription } from 'rxjs';
 import * as fromSelectors from '../../store/selectors/sensors.selectors';
 
 @Component({
-  selector: 'app-sensor-edit',
+  selector: 'ss-sensor-edit',
   templateUrl: './sensor-edit.component.html',
   styleUrls: ['./sensor-edit.component.scss']
 })

@@ -17,7 +17,7 @@ export class SensorsEffects {
   loadSensors$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromActions.loadSensors),
-      switchMap(() =>
+      switchMap((action) =>
         this.service.getAll().pipe(
           map(sensors => fromActions.loadSensorsSuccess({ sensors: sensors.sensors })),
           catchError(error =>

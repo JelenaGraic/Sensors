@@ -29,6 +29,7 @@ export class SensorListComponent implements OnInit {
               private store: Store<MainState>) { }
 
   ngOnInit(): void {
+      this.store.dispatch(fromActions.loadSensors()); 
       this.refresh();
   }
 
@@ -46,7 +47,6 @@ export class SensorListComponent implements OnInit {
         data=> {
           if (data == "true") {
             this.store.dispatch(fromActions.deleteSensor({ id }));
-            this.refresh();
           } else {
             this.snackBar.open("Data is not deleted!", "", {duration: 2000});      
           }
