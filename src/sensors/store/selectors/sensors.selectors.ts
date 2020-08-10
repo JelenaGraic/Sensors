@@ -35,3 +35,18 @@ export const getSelectedSensor = createSelector (
         return router.state && entities [router.state.params.id]
     }
 )
+
+export const getFilter = createSelector (
+    getSensorState,
+    fromSensors.getFilteredSensors
+)
+
+export const getFilteredSensors = createSelector(
+    getSensors,
+    getFilter,
+    (state, filterBy) =>
+      state.filter(
+        sensors =>
+        sensors.name.toLowerCase().includes(filterBy.toLowerCase())
+      )
+  );

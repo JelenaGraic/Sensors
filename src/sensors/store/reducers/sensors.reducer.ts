@@ -8,7 +8,8 @@ import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 export interface SensorState extends EntityState<Sensor> {
     loading: boolean,
     loaded: boolean,
-    error: any
+    error: any,
+    filterBy: string
 }
 
 export const adapter: EntityAdapter<Sensor> = createEntityAdapter<Sensor>();
@@ -16,7 +17,8 @@ export const adapter: EntityAdapter<Sensor> = createEntityAdapter<Sensor>();
 export const initialState: SensorState = adapter.getInitialState ({
     loading: false,
     loaded: false,
-    error: undefined
+    error: undefined,
+    filterBy: 'all'
 })
 
 export const sensorReducer = createReducer (
@@ -68,7 +70,11 @@ export const sensorReducer = createReducer (
     ),
     on(fromSensorsActions.updateSensor,
       (state, action) => adapter.updateOne(action.sensor, state)
-    )
+    ),
+    on(fromSensorsActions.filterBy,
+      (state, action) =>{
+        return {...state, filterBy: action.payload}
+      })
 )
 
 export function reducer (state: SensorState | undefined, action: Action) {
@@ -78,6 +84,7 @@ export function reducer (state: SensorState | undefined, action: Action) {
 
 export const getSensorsLoading = (state: SensorState) => state.loading;
 export const getSensorsLoaded = (state: SensorState) => state.loaded;
+export const getFilteredSensors = (state: SensorState) => state.filterBy;
 
 
 export const {

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { SensorService } from '../../services/sensor.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { switchMap, map, catchError, mergeMap, tap, concatMap } from 'rxjs/operators';
+import { switchMap, map, catchError, mergeMap, tap, concatMap, filter } from 'rxjs/operators';
 import { of } from 'rxjs';
 import * as fromActions from '../actions/sensors.action';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { Router, UrlSegment } from '@angular/router';
+import { ROUTER_NAVIGATED, ROUTER_NAVIGATION, RouterNavigatedAction, RouterNavigationAction } from '@ngrx/router-store';
 
 
 @Injectable()

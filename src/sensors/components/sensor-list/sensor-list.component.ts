@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store';
 import * as fromSensorsSelectors from '../../store/selectors/sensors.selectors';
 import { Observable } from 'rxjs';
 import * as fromActions from '../../store/actions/sensors.action';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ss-sensor-list',
@@ -21,12 +22,10 @@ export class SensorListComponent implements OnInit {
   hours = this.date.getHours() + ":" + this.date.getMinutes();
   showProgressBar$: Observable<boolean>;
 
-  params = {
-    all: ''
-  }
+ filterBy: string;
 
   constructor(private dialog: MatDialog, private snackBar: MatSnackBar,
-              private store: Store<MainState>) { }
+              private store: Store<MainState>, private router: Router) { }
 
   ngOnInit(): void {
       this.store.dispatch(fromActions.loadSensors()); 
@@ -51,6 +50,11 @@ export class SensorListComponent implements OnInit {
             this.snackBar.open("Data is not deleted!", "", {duration: 2000});      
           }
         })
+  }
+
+  filter() {
+    this.store.dispatch(fromActions.filterBy({payload: this.filterBy}));
+    this.sensors$ = this.store.select(fromSensorsSelectors.getFilteredSensors);
   }
 
 }

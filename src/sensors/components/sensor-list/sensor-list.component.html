@@ -5,11 +5,11 @@
     <mat-form-field>
 
         <mat-label>Search: </mat-label>
-        <input matInput class="search__all-and-btn" type="text" placeholder="Search" [(ngModel)] = "this.params.all">
+        <input matInput class="search__all-and-btn" type="text" placeholder="Search" [(ngModel)] = "filterBy">
         
     </mat-form-field>
 
-    <button mat-button (click)="refresh()">Submit</button>
+    <button mat-button (click)="filter()">Submit</button>
 
 </div>
 
