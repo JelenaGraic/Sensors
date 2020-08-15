@@ -15,7 +15,7 @@ export class SwitchButtonComponent implements OnInit {
 
   toggleGridView() {
 
-    this.router.url == '/' ? this.router.navigate(['sensor/grid']) : this.router.navigate(['/']);
+    this.router.url == '/' ? this.router.navigate(['/table']) : this.router.navigate(['/']);
  }
 
 

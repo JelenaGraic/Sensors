@@ -15,6 +15,7 @@ import { SwitchButtonComponent } from 'src/sensors/components/switch-button/swit
 //modules
 import { MaterialsModule } from '../materials/materials.module';
 import { SensorModule } from '../sensors/sensor.module';
+import { TableModule } from '../sensors/components/table/table/table.module';
 
 //store
 import { StoreModule } from '@ngrx/store';
@@ -23,6 +24,7 @@ import { environment } from 'src/environments/environment';
 import { EffectsModule } from '@ngrx/effects'
 import { reducer, CustomSerializer } from './router store/reducers/index';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { HomeComponent } from '../sensors/components/home/home.component';
 
 
 
@@ -31,7 +33,8 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
   declarations: [
     AppComponent,
     SensorListComponent,
-    SwitchButtonComponent
+    SwitchButtonComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
     FormsModule,
     ReactiveFormsModule,
     SensorModule,
+    TableModule,
     CommonModule,
     StoreModule.forRoot(reducer,{}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),

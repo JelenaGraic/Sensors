@@ -9,7 +9,7 @@ import * as fromSensorsSelectors from '../../store/selectors/sensors.selectors';
 import * as fromSensorsActions from 'src/sensors/store/actions/sensors.action';
 
 @Component({
-  selector: 'app-table',
+  selector: 'ss-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
