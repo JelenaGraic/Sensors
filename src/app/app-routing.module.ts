@@ -3,10 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { SensorListComponent } from '../sensors/components/sensor-list/sensor-list.component';
 import { HomeComponent } from 'src/sensors/components/home/home.component';
 
+//guards
+import * as fromGuards from '../sensors/guards/index';
+
 
 const appRoutes: Routes = [
   { path: '',
   component: HomeComponent,
+  canActivate: [fromGuards.SensorsGuard],
   children:[
     {path: '', component: SensorListComponent},
     {path: 'table',
@@ -20,7 +24,7 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule],
-  providers: []
+  providers: [fromGuards.guards]
 })
 export class AppRoutingModule { }
 

@@ -53,7 +53,7 @@ export class SensorListComponent implements OnInit {
   }
 
   filter() {
-    this.store.dispatch(fromActions.filterBy({payload: this.filterBy}));
+    this.router.navigate(['/'], { queryParams: {q: this.filterBy.toLowerCase()}})
     this.sensors$ = this.store.select(fromSensorsSelectors.getFilteredSensors);
   }
 

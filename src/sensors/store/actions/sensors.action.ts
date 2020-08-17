@@ -65,11 +65,3 @@ export const updateSensor = createAction(
   props<{ sensor: Update<Sensor> }>()
 );
 
-
-//filter
-
-export const filterBy = createAction(
-  '[Sensor-list Component] Filter Sensors',
-  props<{ payload: string }>()
-)
-

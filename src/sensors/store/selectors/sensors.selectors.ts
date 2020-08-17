@@ -3,6 +3,7 @@ import * as fromMain from '../reducers/index';
 import * as fromSensors from '../reducers/sensors.reducer';
 import * as fromRoot from '../../../app/router store/reducers/index';
 import { Sensor } from 'src/sensors/models/sensor';
+import { arraysAreNotAllowedMsg } from '@ngrx/store/src/models';
 
 export const getSensorState = createSelector (
     fromMain.getMainState,
@@ -36,17 +37,14 @@ export const getSelectedSensor = createSelector (
     }
 )
 
-export const getFilter = createSelector (
-    getSensorState,
-    fromSensors.getFilteredSensors
-)
+
 
 export const getFilteredSensors = createSelector(
     getSensors,
-    getFilter,
-    (state, filterBy) =>
-      state.filter(
-        sensors =>
-        sensors.name.toLowerCase().includes(filterBy.toLowerCase())
-      )
-  );
+    fromRoot.getRouterState,
+    (sensors, router): Sensor[] => {
+        return router.state && sensors.filter( el =>
+             el.name.toLowerCase().includes(router.state.queryParams.q)
+        )
+    }
+)
